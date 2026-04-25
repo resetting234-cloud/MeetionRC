@@ -7,8 +7,11 @@ import meetion.rc.core.module.Module;
 import meetion.rc.core.setting.impl.BooleanSetting;
 import meetion.rc.core.setting.impl.NumberSetting;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.AttributeModifiersComponent;
+import net.minecraft.component.type.EquippableComponent;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorItem;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.SlotActionType;
 
@@ -27,9 +30,7 @@ public class AutoArmor extends Module {
     public void onTick(TickEvent ev) {
         if (ev.getEra() != meetion.rc.core.event.Event.Era.PRE) return;
         if (mc().player == null || mc().interactionManager == null) return;
-        if (mc().player.currentScreenHandler != mc().player.playerScreenHandler) {
-            if (inventoryOnly.getValue()) return;
-        }
+        if (mc().player.currentScreenHandler != mc().player.playerScreenHandler && inventoryOnly.getValue()) return;
         if (System.currentTimeMillis() < nextSwap) return;
 
         for (EquipmentSlot slot : new EquipmentSlot[]{ EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET }) {
@@ -38,7 +39,7 @@ public class AutoArmor extends Module {
             int bestSlot = findBestSlot(slot, current);
             if (bestSlot >= 0) {
                 swap(bestSlot, armorIndex);
-                nextSwap = System.currentTimeMillis() + (long) delay.getValue();
+                nextSwap = System.currentTimeMillis() + delay.getValue().longValue();
                 return;
             }
         }
@@ -67,10 +68,17 @@ public class AutoArmor extends Module {
 
     private int scoreOf(ItemStack stack, EquipmentSlot slot) {
         if (stack.isEmpty()) return -1;
-        if (!(stack.getItem() instanceof ArmorItem armor)) return -1;
-        if (!stack.canEquip(slot, mc().player)) return -1;
-        return armor.getMaterial().value().protection().getOrDefault(slot, 0) * 10
-                + (int) armor.getMaterial().value().toughness();
+        EquippableComponent eq = stack.get(DataComponentTypes.EQUIPPABLE);
+        if (eq == null || eq.slot() != slot) return -1;
+
+        AttributeModifiersComponent mods = stack.getOrDefault(DataComponentTypes.ATTRIBUTE_MODIFIERS, AttributeModifiersComponent.DEFAULT);
+        double protection = 0;
+        double toughness = 0;
+        for (AttributeModifiersComponent.Entry entry : mods.modifiers()) {
+            if (entry.attribute() == EntityAttributes.ARMOR) protection += entry.modifier().value();
+            else if (entry.attribute() == EntityAttributes.ARMOR_TOUGHNESS) toughness += entry.modifier().value();
+        }
+        return (int) (protection * 10 + toughness);
     }
 
     private void swap(int from, int to) {

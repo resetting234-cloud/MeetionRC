@@ -25,7 +25,7 @@ public class AutoSprint extends Module {
 
         boolean canSprint = switch (mode.getValue()) {
             case "Always" -> hasAnyInput();
-            case "Forward" -> mc().player.input.movementForward > 0;
+            case "Forward" -> mc().player.input.playerInput.forward();
             case "Omni" -> hasAnyInput();
             default -> false;
         };
@@ -34,6 +34,7 @@ public class AutoSprint extends Module {
 
     private boolean hasAnyInput() {
         if (mc().player == null || mc().player.input == null) return false;
-        return mc().player.input.movementForward != 0 || mc().player.input.movementSideways != 0;
+        var pi = mc().player.input.playerInput;
+        return pi.forward() || pi.backward() || pi.left() || pi.right();
     }
 }
