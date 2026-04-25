@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "meetionrc",
+  "version": "${version}",
+  "name": "MeetionRC",
+  "description": "MeetionRC — utility client for Minecraft 1.21.8 (Fabric).",
+  "authors": [
+    "resetting234-cloud"
+  ],
+  "contact": {
+    "homepage": "https://github.com/resetting234-cloud/MeetionRC",
+    "sources": "https://github.com/resetting234-cloud/MeetionRC"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/meetionrc/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "meetion.rc.MeetionRC"
+    ]
+  },
+  "mixins": [
+    "meetionrc.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.8",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
