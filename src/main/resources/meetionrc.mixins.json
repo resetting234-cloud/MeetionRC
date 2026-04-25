@@ -5,6 +5,8 @@
   "client": [
     "ClientPlayerEntityMixin",
     "ClientPlayNetworkHandlerMixin",
+    "ClientPlayNetworkHandlerVelocityMixin",
+    "EntityVelocityUpdateMixin",
     "GameRendererMixin",
     "InGameHudMixin",
     "KeyboardMixin",

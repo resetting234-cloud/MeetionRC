@@ -34,15 +34,18 @@ public class ClickGuiScreen extends Screen {
 
     @Override
     public void render(DrawContext ctx, int mouseX, int mouseY, float delta) {
-        renderBackground(ctx, mouseX, mouseY, delta);
-        ctx.fill(0, 0, this.width, this.height, 0x80000000);
+        // NOTE: don't call super.renderBackground — it triggers applyBlur which can only run once per frame.
+        ctx.fill(0, 0, this.width, this.height, 0xC0101010);
+
+        // header bar
+        ctx.fill(0, 0, this.width, 22, 0xFF0E0E0E);
+        ctx.drawTextWithShadow(client.textRenderer, "§b" + meetion.rc.MeetionRC.NAME + " §8| §7v" + meetion.rc.MeetionRC.VERSION + " §8| §7Right Shift to close", 8, 7, 0xFFFFFFFF);
 
         int x = START_X;
         for (Category cat : Category.values()) {
             renderCategory(ctx, cat, x, mouseX, mouseY);
             x += CATEGORY_WIDTH + CATEGORY_GAP;
         }
-        super.render(ctx, mouseX, mouseY, delta);
     }
 
     private void renderCategory(DrawContext ctx, Category cat, int x, int mouseX, int mouseY) {
@@ -129,6 +132,15 @@ public class ClickGuiScreen extends Screen {
 
     @Override
     public boolean shouldPause() { return false; }
+
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if (keyCode == org.lwjgl.glfw.GLFW.GLFW_KEY_RIGHT_SHIFT) {
+            close();
+            return true;
+        }
+        return super.keyPressed(keyCode, scanCode, modifiers);
+    }
 
     @Override
     public void close() { MeetionRC.getInstance().getConfigManager().save(); super.close(); }

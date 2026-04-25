@@ -20,11 +20,16 @@ public class ModuleManager {
         add(new KillAura());
         add(new TriggerBot());
         add(new AutoClicker());
+        add(new AimAssist());
+        add(new ElytraTarget());
+        add(new Velocity());
 
         // Movement
         add(new NoSlow());
         add(new AutoSprint());
         add(new InvMove());
+        add(new SuperFirework());
+        add(new NoWeb());
 
         // Player
         add(new AutoArmor());
