@@ -37,6 +37,9 @@ public abstract class Module {
             EventBus.unregister(this);
             onDisable();
         }
+        if (meetion.rc.MeetionRC.getInstance() != null) {
+            meetion.rc.screen.hud.Notifications.push((enabled ? "§a+ " : "§c- ") + name);
+        }
     }
 
     protected void onEnable() {}

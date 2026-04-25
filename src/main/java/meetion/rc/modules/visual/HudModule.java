@@ -8,6 +8,8 @@ import meetion.rc.core.module.Module;
 import meetion.rc.core.setting.impl.BooleanSetting;
 import meetion.rc.core.setting.impl.MultiSelectSetting;
 import meetion.rc.screen.hud.ArrayListRenderer;
+import meetion.rc.screen.hud.Notifications;
+import meetion.rc.screen.hud.TargetHudRenderer;
 import meetion.rc.screen.hud.WatermarkRenderer;
 import net.minecraft.client.gui.DrawContext;
 
@@ -34,5 +36,7 @@ public class HudModule extends Module {
         DrawContext ctx = ev.getContext();
         if (has("Watermark")) WatermarkRenderer.render(ctx);
         if (has("ArrayList")) ArrayListRenderer.render(ctx);
+        if (has("TargetHUD")) TargetHudRenderer.render(ctx);
+        if (has("Notifications")) Notifications.render(ctx);
     }
 }
