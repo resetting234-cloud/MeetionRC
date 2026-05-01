@@ -37,12 +37,32 @@ public class HudModule extends Module {
     public boolean isCompact() { return compact.getValue(); }
     public boolean isRealBlurEnabled() { return realBlur.getValue(); }
 
+    private static boolean firstRenderLogged = false;
+
     @EventHandler
     public void onRender(Render2DEvent ev) {
         DrawContext ctx = ev.getContext();
-        if (has("Watermark"))     Watermark.render(ctx);
-        if (has("ArrayList"))     ArrayList.render(ctx);
-        if (has("TargetHUD"))     TargetHud.render(ctx);
-        if (has("Notifications")) NotificationManager.render(ctx);
+        if (!firstRenderLogged) {
+            firstRenderLogged = true;
+            System.out.println("[METTRC] HUD render pipeline online — Watermark/ArrayList/TargetHUD/Notifications");
+        }
+        if (has("Watermark"))     safe("Watermark",     () -> Watermark.render(ctx));
+        if (has("ArrayList"))     safe("ArrayList",     () -> ArrayList.render(ctx));
+        if (has("TargetHUD"))     safe("TargetHUD",     () -> TargetHud.render(ctx));
+        if (has("Notifications")) safe("Notifications", () -> NotificationManager.render(ctx));
+    }
+
+    /** One bad renderer must not blow out the whole HUD; log first failure per element. */
+    private static final java.util.Set<String> reportedFailures = new java.util.HashSet<>();
+    private static void safe(String name, Runnable r) {
+        try {
+            r.run();
+        } catch (Throwable t) {
+            if (reportedFailures.add(name)) {
+                System.err.println("[METTRC] HUD element '" + name + "' threw " + t.getClass().getSimpleName()
+                        + ": " + t.getMessage() + " — element disabled until next reload.");
+                t.printStackTrace();
+            }
+        }
     }
 }
