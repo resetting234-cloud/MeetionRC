@@ -2,7 +2,7 @@
   "providers": [
     {
       "type": "ttf",
-      "file": "meetionrc:font/jetbrains_mono_bold.ttf",
+      "file": "meetionrc:jetbrains_mono_bold.ttf",
       "shift": [0.0, 1.0],
       "size": 8.0,
       "oversample": 2.0,
