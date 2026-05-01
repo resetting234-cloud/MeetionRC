@@ -1,4 +1,5 @@
 package meetion.rc.modules.combat;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.MeetionRC;
 import meetion.rc.core.event.EventHandler;
@@ -13,6 +14,7 @@ import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.Comparator;
 
+@AutoModule
 public class ElytraTarget extends Module {
 
     private final NumberSetting range = register(new NumberSetting("Range", 80.0, 10.0, 200.0, 1.0));

@@ -1,4 +1,5 @@
 package meetion.rc.modules.movement;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.core.module.Category;
 import meetion.rc.core.module.Module;
@@ -8,6 +9,7 @@ import meetion.rc.util.bypass.Anticheat;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.consume.UseAction;
 
+@AutoModule
 public class NoSlow extends Module {
 
     private final BooleanSetting whileEating = register(new BooleanSetting("WhileEating", true));

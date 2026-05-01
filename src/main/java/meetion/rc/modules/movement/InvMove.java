@@ -1,4 +1,5 @@
 package meetion.rc.modules.movement;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.core.event.EventHandler;
 import meetion.rc.core.event.events.TickEvent;
@@ -9,6 +10,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.option.KeyBinding;
 
+@AutoModule
 public class InvMove extends Module {
 
     private final BooleanSetting allowChat = register(new BooleanSetting("InChat", false));

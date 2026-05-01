@@ -1,4 +1,5 @@
 package meetion.rc.modules.movement;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.core.event.EventHandler;
 import meetion.rc.core.event.events.TickEvent;
@@ -7,6 +8,7 @@ import meetion.rc.core.module.Module;
 import meetion.rc.core.setting.impl.BooleanSetting;
 import meetion.rc.core.setting.impl.ModeSetting;
 
+@AutoModule
 public class AutoSprint extends Module {
 
     private final ModeSetting mode = register(new ModeSetting("Mode", "Always", "Always", "Forward", "Omni"));

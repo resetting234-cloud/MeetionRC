@@ -1,4 +1,5 @@
 package meetion.rc.modules.movement;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.core.event.EventHandler;
 import meetion.rc.core.event.events.TickEvent;
@@ -11,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 
+@AutoModule
 public class NoWeb extends Module {
 
     private final NumberSetting boost = register(new NumberSetting("Boost", 7.0, 1.0, 25.0, 0.5));

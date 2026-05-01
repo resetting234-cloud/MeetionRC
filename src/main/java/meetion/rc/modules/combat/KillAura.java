@@ -1,4 +1,5 @@
 package meetion.rc.modules.combat;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.MeetionRC;
 import meetion.rc.core.event.EventHandler;
@@ -19,6 +20,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
 
+@AutoModule
 public class KillAura extends Module {
 
     private final ModeSetting mode = register(new ModeSetting("Mode", "Single", "Single", "Switch", "Multi"));

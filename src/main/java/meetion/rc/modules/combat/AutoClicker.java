@@ -1,4 +1,5 @@
 package meetion.rc.modules.combat;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.core.event.EventHandler;
 import meetion.rc.core.event.events.TickEvent;
@@ -15,6 +16,7 @@ import net.minecraft.util.hit.HitResult;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+@AutoModule
 public class AutoClicker extends Module {
 
     private final NumberSetting min = register(new NumberSetting("MinCPS", 8.0, 1.0, 20.0, 0.5));

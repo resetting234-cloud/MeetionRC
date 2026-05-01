@@ -4,15 +4,18 @@ import meetion.rc.core.event.EventBus;
 import meetion.rc.core.event.EventHandler;
 import meetion.rc.core.event.events.KeyEvent;
 import meetion.rc.manager.*;
-import meetion.rc.screen.clickgui.ClickGuiScreen;
+import meetion.rc.ui.screens.ClickGuiScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.MinecraftClient;
 import org.lwjgl.glfw.GLFW;
 
 public class MeetionRC implements ClientModInitializer {
 
-    public static final String NAME = "MeetionRC";
-    public static final String VERSION = "0.1.0";
+    public static final String MOD_ID = "meetionrc";
+    public static final String NAME = "METTRC";
+    public static final String NAME_RED = "MET";   // styled red half of the wordmark
+    public static final String NAME_WHITE = "TRC"; // styled white half
+    public static final String VERSION = "0.2.0";
     public static final String PREFIX = ".";
 
     private static MeetionRC instance;

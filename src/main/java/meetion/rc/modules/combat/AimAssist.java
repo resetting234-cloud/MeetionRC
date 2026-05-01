@@ -1,4 +1,5 @@
 package meetion.rc.modules.combat;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.MeetionRC;
 import meetion.rc.core.event.EventHandler;
@@ -14,6 +15,7 @@ import net.minecraft.util.math.MathHelper;
 
 import java.util.Comparator;
 
+@AutoModule
 public class AimAssist extends Module {
 
     private final NumberSetting range = register(new NumberSetting("Range", 4.0, 1.0, 8.0, 0.1));

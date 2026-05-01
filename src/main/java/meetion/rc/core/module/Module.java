@@ -38,7 +38,13 @@ public abstract class Module {
             onDisable();
         }
         if (meetion.rc.MeetionRC.getInstance() != null) {
-            meetion.rc.screen.hud.Notifications.push((enabled ? "§a+ " : "§c- ") + name);
+            meetion.rc.ui.hud.NotificationManager.post(
+                    name,
+                    enabled ? "Enabled" : "Disabled",
+                    enabled
+                            ? meetion.rc.ui.hud.Notification.Type.SUCCESS
+                            : meetion.rc.ui.hud.Notification.Type.ERROR,
+                    1800);
         }
     }
 

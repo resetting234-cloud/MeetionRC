@@ -1,4 +1,5 @@
 package meetion.rc.modules.visual;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.core.module.Category;
 import meetion.rc.core.module.Module;
@@ -6,6 +7,7 @@ import meetion.rc.core.setting.impl.MultiSelectSetting;
 
 import java.util.List;
 
+@AutoModule
 public class Particless extends Module {
 
     private final MultiSelectSetting hide = register(new MultiSelectSetting(
