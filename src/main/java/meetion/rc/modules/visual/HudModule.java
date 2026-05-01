@@ -23,7 +23,11 @@ public class HudModule extends Module {
             "Elements",
             List.of("Watermark", "ArrayList", "Notifications", "TargetHUD"),
             "Watermark", "ArrayList", "Notifications", "TargetHUD", "TPS", "FPS", "Coords"));
-    private final BooleanSetting compact = register(new BooleanSetting("Compact", false));
+    private final BooleanSetting compact  = register(new BooleanSetting("Compact", false));
+    private final BooleanSetting realBlur = register(new BooleanSetting("Real Blur", false));
+    {
+        realBlur.describe("Use Mojang's native ClickGUI blur. Heavier on integrated GPUs.");
+    }
 
     public HudModule() {
         super("HUD", "Configurable on-screen HUD elements", Category.VISUAL);
@@ -31,6 +35,7 @@ public class HudModule extends Module {
 
     public boolean has(String element) { return elements.isSelected(element); }
     public boolean isCompact() { return compact.getValue(); }
+    public boolean isRealBlurEnabled() { return realBlur.getValue(); }
 
     @EventHandler
     public void onRender(Render2DEvent ev) {

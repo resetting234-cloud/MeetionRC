@@ -4,7 +4,7 @@ import meetion.rc.core.event.EventBus;
 import meetion.rc.core.event.EventHandler;
 import meetion.rc.core.event.events.KeyEvent;
 import meetion.rc.manager.*;
-import meetion.rc.screen.clickgui.ClickGuiScreen;
+import meetion.rc.ui.screens.ClickGuiScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.MinecraftClient;
 import org.lwjgl.glfw.GLFW;
