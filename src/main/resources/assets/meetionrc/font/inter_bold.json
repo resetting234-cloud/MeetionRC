@@ -1,0 +1,13 @@
+{
+  "providers": [
+    {
+      "comment": "Inter v4.1 ships only the variable Bold; for static-bold fallback we reuse the regular and rely on text shadow to add weight in HUD/header contexts.",
+      "type": "ttf",
+      "file": "meetionrc:font/inter_regular.ttf",
+      "shift": [0.0, 1.0],
+      "size": 10.5,
+      "oversample": 2.0,
+      "skip": []
+    }
+  ]
+}
