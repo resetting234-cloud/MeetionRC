@@ -2,7 +2,7 @@
   "providers": [
     {
       "type": "ttf",
-      "file": "meetionrc:font/inter_regular.ttf",
+      "file": "meetionrc:inter_regular.ttf",
       "shift": [0.0, 1.0],
       "size": 9.5,
       "oversample": 2.0,
