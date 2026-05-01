@@ -1,4 +1,5 @@
 package meetion.rc.modules.visual;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.core.event.EventHandler;
 import meetion.rc.core.event.events.TickEvent;
@@ -9,6 +10,7 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.GraphicsMode;
 import net.minecraft.client.option.SimpleOption;
 
+@AutoModule
 public class Fps extends Module {
 
     private final BooleanSetting hideParticles = register(new BooleanSetting("HideParticles", true));

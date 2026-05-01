@@ -1,4 +1,5 @@
 package meetion.rc.modules.combat;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.core.module.Category;
 import meetion.rc.core.module.Module;
@@ -6,6 +7,7 @@ import meetion.rc.core.setting.impl.ModeSetting;
 import meetion.rc.core.setting.impl.NumberSetting;
 import meetion.rc.util.bypass.Anticheat;
 
+@AutoModule
 public class Velocity extends Module {
 
     private final NumberSetting horizontal = register(new NumberSetting("Horizontal%", 0.0, 0.0, 100.0, 1.0));

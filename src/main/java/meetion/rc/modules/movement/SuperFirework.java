@@ -1,4 +1,5 @@
 package meetion.rc.modules.movement;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.core.event.EventHandler;
 import meetion.rc.core.event.events.TickEvent;
@@ -11,6 +12,7 @@ import net.minecraft.network.packet.c2s.play.PlayerInteractItemC2SPacket;
 import net.minecraft.network.packet.c2s.play.UpdateSelectedSlotC2SPacket;
 import net.minecraft.util.Hand;
 
+@AutoModule
 public class SuperFirework extends Module {
 
     private final NumberSetting interval = register(new NumberSetting("IntervalMs", 600.0, 100.0, 3000.0, 25.0));

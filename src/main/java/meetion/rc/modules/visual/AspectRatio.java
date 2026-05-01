@@ -1,9 +1,11 @@
 package meetion.rc.modules.visual;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.core.module.Category;
 import meetion.rc.core.module.Module;
 import meetion.rc.core.setting.impl.NumberSetting;
 
+@AutoModule
 public class AspectRatio extends Module {
 
     private final NumberSetting fovScale = register(new NumberSetting("FovScale", 1.0, 0.5, 2.0, 0.05));

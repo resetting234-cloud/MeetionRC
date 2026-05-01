@@ -11,8 +11,10 @@ import org.lwjgl.glfw.GLFW;
 
 public class MeetionRC implements ClientModInitializer {
 
-    public static final String NAME = "MeetionRC";
-    public static final String VERSION = "0.1.0";
+    public static final String NAME = "METTRC";
+    public static final String NAME_RED = "MET";   // styled red half of the wordmark
+    public static final String NAME_WHITE = "TRC"; // styled white half
+    public static final String VERSION = "0.2.0";
     public static final String PREFIX = ".";
 
     private static MeetionRC instance;

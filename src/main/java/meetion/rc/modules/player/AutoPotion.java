@@ -1,4 +1,5 @@
 package meetion.rc.modules.player;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.core.event.EventHandler;
 import meetion.rc.core.event.events.TickEvent;
@@ -17,6 +18,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
+@AutoModule
 public class AutoPotion extends Module {
 
     private final NumberSetting healthThreshold = register(new NumberSetting("HealthThreshold", 14.0, 1.0, 20.0, 1.0));

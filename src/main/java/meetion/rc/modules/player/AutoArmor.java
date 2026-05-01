@@ -1,4 +1,5 @@
 package meetion.rc.modules.player;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.core.event.EventHandler;
 import meetion.rc.core.event.events.TickEvent;
@@ -15,6 +16,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.SlotActionType;
 
+@AutoModule
 public class AutoArmor extends Module {
 
     private final NumberSetting delay = register(new NumberSetting("Delay", 100.0, 0.0, 1000.0, 10.0));

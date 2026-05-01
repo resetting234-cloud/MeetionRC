@@ -1,4 +1,5 @@
 package meetion.rc.modules.visual;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.core.event.EventHandler;
 import meetion.rc.core.event.events.TickEvent;
@@ -9,6 +10,7 @@ import meetion.rc.core.setting.impl.NumberSetting;
 import java.util.ArrayList;
 import java.util.List;
 
+@AutoModule
 public class AutoCommand extends Module {
 
     private final NumberSetting interval = register(new NumberSetting("IntervalSec", 30.0, 1.0, 600.0, 1.0));

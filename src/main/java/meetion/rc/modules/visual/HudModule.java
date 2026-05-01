@@ -1,4 +1,5 @@
 package meetion.rc.modules.visual;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.MeetionRC;
 import meetion.rc.core.event.EventHandler;
@@ -15,6 +16,7 @@ import net.minecraft.client.gui.DrawContext;
 
 import java.util.List;
 
+@AutoModule(enabledByDefault = true)
 public class HudModule extends Module {
 
     private final MultiSelectSetting elements = register(new MultiSelectSetting(
@@ -25,7 +27,6 @@ public class HudModule extends Module {
 
     public HudModule() {
         super("HUD", "Configurable on-screen HUD elements", Category.VISUAL);
-        setEnabled(true);
     }
 
     public boolean has(String element) { return elements.isSelected(element); }

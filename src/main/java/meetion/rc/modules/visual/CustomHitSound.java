@@ -1,4 +1,5 @@
 package meetion.rc.modules.visual;
+import meetion.rc.core.module.AutoModule;
 
 import meetion.rc.core.event.EventHandler;
 import meetion.rc.core.event.events.AttackEvent;
@@ -10,6 +11,7 @@ import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 
+@AutoModule
 public class CustomHitSound extends Module {
 
     private final ModeSetting sound = register(new ModeSetting("Sound", "BlockGlass",
