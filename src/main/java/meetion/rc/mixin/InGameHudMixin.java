@@ -14,9 +14,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin {
 
+    private static boolean meetion$firstFireLogged = false;
+
     @Inject(method = "render", at = @At("RETURN"))
     private void meetion$onHudRender(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
         if (MeetionRC.getInstance() == null) return;
+        if (!meetion$firstFireLogged) {
+            meetion$firstFireLogged = true;
+            System.out.println("[METTRC] InGameHudMixin firing — Render2DEvent pipeline alive.");
+        }
         EventBus.post(new Render2DEvent(context, tickCounter.getTickProgress(true)));
     }
 }

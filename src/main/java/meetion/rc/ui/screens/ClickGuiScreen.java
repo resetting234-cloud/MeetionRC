@@ -51,6 +51,16 @@ public class ClickGuiScreen extends Screen {
 
     private Category activeCategory = Category.COMBAT;
 
+    /**
+     * Nanosecond timestamp captured at construction. The same physical key event that
+     * sets this screen as {@code currentScreen} (RShift in {@code MeetionRC.onKey}) is
+     * subsequently routed by Minecraft's {@code Keyboard.onKey} into this screen's
+     * {@code keyPressed}, which would immediately close us. We guard against that
+     * by ignoring close-keys that arrive within {@link #OPEN_GRACE_NANOS} of construction.
+     */
+    private final long openedAtNanos = System.nanoTime();
+    private static final long OPEN_GRACE_NANOS = 200_000_000L; // 200ms
+
     public ClickGuiScreen() {
         super(Text.literal(MeetionRC.NAME + " ClickGUI"));
     }
@@ -229,12 +239,20 @@ public class ClickGuiScreen extends Screen {
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        if (keyCode == GLFW.GLFW_KEY_RIGHT_SHIFT || keyCode == GLFW.GLFW_KEY_ESCAPE) {
+        // dispatch to focused components first so search-field can capture RShift / ESC
+        for (int i = components.size() - 1; i >= 0; i--) {
+            if (components.get(i).keyPressed(keyCode, scanCode, modifiers)) return true;
+        }
+        if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
             this.close();
             return true;
         }
-        for (int i = components.size() - 1; i >= 0; i--) {
-            if (components.get(i).keyPressed(keyCode, scanCode, modifiers)) return true;
+        if (keyCode == GLFW.GLFW_KEY_RIGHT_SHIFT) {
+            // Ignore the very same RShift press that opened this screen (see openedAtNanos).
+            // After the grace period subsequent presses close the GUI as expected.
+            if (System.nanoTime() - openedAtNanos < OPEN_GRACE_NANOS) return false;
+            this.close();
+            return true;
         }
         return super.keyPressed(keyCode, scanCode, modifiers);
     }
